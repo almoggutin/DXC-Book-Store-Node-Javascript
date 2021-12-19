@@ -6,7 +6,7 @@
   <p align="center">
     This server-side application is part of the DXC Book Store assingment built with Node.js and Javascript. 
   </p>
-    <a href="https://www.postman.com/almog-gutin/workspace/dxc-book-store">View Postman Files</a>
+    <a href="https://www.postman.com/almoggutin/workspace/dxc-book-store">View Postman Files</a>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -62,7 +62,7 @@ In the applicaiton we can add books to the database, edit them and delete them. 
 **Git clone**
 
 ```
-git clone https://github.com/almog-gutin/DXC-Book-Store-Node-Javascript.git
+git clone https://github.com/almoggutin/DXC-Book-Store-Node-Javascript.git
 ```
 
 **Instructions**
