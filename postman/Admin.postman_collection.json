@@ -1,0 +1,495 @@
+{
+	"info": {
+		"_postman_id": "1666f64a-04c0-482b-9066-e120c91ad725",
+		"name": "Admin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "General",
+			"item": [
+				{
+					"name": "Admin: New Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"\",\n    \"lastName\": \"\",\n    \"email\": \"\",\n    \"password\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/admins/new",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"admins",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin: Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response;",
+									"",
+									"if (res.code == 200) {",
+									"    const data = res.json().data;",
+									"",
+									"    pm.environment.set('token', data.token)",
+									"    pm.environment.set('id', data.admin._id)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"\",\n    \"password\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/admins/login",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"admins",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin: Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response;",
+									"",
+									"if (res.code === 200) {",
+									"    pm.environment.set('token', null);",
+									"    pm.environment.set('id', null);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/admins/logout",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"admins",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin: Logout From All Devices",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response;",
+									"",
+									"if (res.code === 200) {",
+									"    pm.environment.set('token', null);",
+									"    pm.environment.set('id', null);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/admins/logout-all",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"admins",
+								"logout-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin: Get Account Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/admins/me",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"admins",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin: Edit Account",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/admins/me",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"admins",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin: Edit Account Password",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \n    \"currentPassword\": \"\",\n    \"newPassword\": \"\", \n    \"repeatedNewPassword\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/admins/me/change-password",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"admins",
+								"me",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin: Delete Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response;",
+									"",
+									"if (res.code === 200) {",
+									"    pm.environment.set('token', null);",
+									"    pm.environment.set('id', null);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/admins/me",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"admins",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Admin: New Book",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const publicationDate = new Date('November 30, 2021');",
+									"pm.environment.set(\"bookPublicationDate\", publicationDate);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response;",
+									"",
+									"if (res.code == 201) {",
+									"    const book = res.json().data.book;",
+									"",
+									"    pm.environment.set('bookID', book._id)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"\",\n    \"author\": \"\",\n    \"description\": \"\",\n    \"publisher\": \"\",\n    \"publicationDate\": \"{{bookPublicationDate}}\",\n    \"pages\": 332,\n    \"price\": 14.99\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/books/new",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"books",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin: Edit Book",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"\",\n    \"author\": \"\",\n    \"description\": \"\",\n    \"publisher\": \"\",\n    \"pages\": 354,\n    \"price\": 7.59\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/books/{{bookID}}",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"books",
+								"{{bookID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin: Delete Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response;",
+									"",
+									"if (res.code == 200) {",
+									"    pm.environment.set('bookID', null)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/books/{{bookID}}",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"books",
+								"{{bookID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin: Upload Book Cover",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/books/{{bookID}}/upload-cover",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"books",
+								"{{bookID}}",
+								"upload-cover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin: Delete Book Cover",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/books/{{bookID}}/delete-cover",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"books",
+								"{{bookID}}",
+								"delete-cover"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
